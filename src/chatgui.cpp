@@ -6,6 +6,8 @@
 #include "chatlogic.h"
 #include "chatgui.h"
 
+#include <memory>
+
 // size of chatbot window
 const int width = 414;
 const int height = 736;
@@ -117,8 +119,15 @@ ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
     //// STUDENT CODE
     ////
 
+    //TODO: Task 1: 
+    // In file chatgui.h / chatgui.cpp, make _chatLogic an exclusive resource to class ChatbotPanelDialog 
+    // using an appropriate smart pointer.
+    // Where required, make changes to the code such that data structures and function parameters reflect the new structure.
+    // exclusive resource = unique smart pointer
+
+    _chatLogic = std::make_unique<ChatLogic>();
     // create chat logic instance
-    _chatLogic = new ChatLogic(); 
+    // _chatLogic = new ChatLogic(); 
 
     // pass pointer to chatbot dialog so answers can be displayed in GUI
     _chatLogic->SetPanelDialogHandle(this);
@@ -135,7 +144,7 @@ ChatBotPanelDialog::~ChatBotPanelDialog()
     //// STUDENT CODE
     ////
 
-    delete _chatLogic;
+    //delete _chatLogic;
 
     ////
     //// EOF STUDENT CODE

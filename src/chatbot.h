@@ -19,7 +19,7 @@ private:
     ChatLogic *_chatLogic;
 
     // proprietary functions
-    int ComputeLevenshteinDistance(std::string s1, std::string s2);
+    int ComputeLevenshteinDistance(std::string s1, std::string s2);// number of characters that differs between strings -> 0 = same 
 
 public:
     // constructors / destructors
@@ -29,7 +29,8 @@ public:
 
     //// STUDENT CODE
     ////
-
+    // TODO: 
+    // 
     ////
     //// EOF STUDENT CODE
 

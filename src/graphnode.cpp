@@ -11,7 +11,10 @@ GraphNode::~GraphNode()
     //// STUDENT CODE
     ////
 
-    delete _chatBot; 
+    //delete _chatBot; 
+    //TODO: 
+    // Task 0: the destructor here does not make any sense
+    // The chat bot is allocated and deallocated in chatlogic.cpp 
 
     ////
     //// EOF STUDENT CODE

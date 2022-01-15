@@ -16,7 +16,8 @@ private:
     //// STUDENT CODE
     ////
 
-    // data handles (owned)
+    // data handles (owned) -> important destinction to not owned
+    // todo: ownership of edges is moved to some of the nodes 
     std::vector<GraphNode *> _nodes;
     std::vector<GraphEdge *> _edges;
 

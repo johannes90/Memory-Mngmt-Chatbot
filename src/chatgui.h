@@ -3,6 +3,9 @@
 
 #include <wx/wx.h>
 
+// Part1:
+#include <memory>
+
 class ChatLogic; // forward declaration
 
 // middle part of the window containing the dialog between user and chatbot
@@ -16,7 +19,9 @@ private:
     //// STUDENT CODE
     ////
 
-    ChatLogic *_chatLogic;
+    //Task 1: change _chatLogic to a unique pointer
+    //ChatLogic *_chatLogic;
+    std::unique_ptr<ChatLogic> _chatLogic;
 
     ////
     //// EOF STUDENT CODE
@@ -27,7 +32,14 @@ public:
     ~ChatBotPanelDialog();
 
     // getter / setter
-    ChatLogic *GetChatLogicHandle() { return _chatLogic; }
+    ChatLogic *GetChatLogicHandle() { 
+        
+        // Task 1:
+        //You have defined the _chatlogic as a unique pointer, so you need to return the stored pointer not the unique pointer itself in the method GetChatLogicHandle as this causes the current error
+        //To return the stored pointer use get()  
+        //return _chatLogic; 
+        return _chatLogic.get();
+    }
 
     // events
     void paintEvent(wxPaintEvent &evt);
@@ -63,7 +75,7 @@ private:
     wxTextCtrl *_userTextCtrl;
 
     // events
-    void OnEnter(wxCommandEvent &WXUNUSED(event));
+    void OnEnter(wxCommandEvent &WXUNUSED(event)); // overloading the onEnter event
 
 public:
     // constructor / desctructor
