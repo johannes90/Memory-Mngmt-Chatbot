@@ -144,6 +144,7 @@ ChatBotPanelDialog::~ChatBotPanelDialog()
     //// STUDENT CODE
     ////
 
+    // Task 1: erase the delete as this is handled by a smart pointer inside the class implementation
     //delete _chatLogic;
 
     ////

@@ -30,6 +30,7 @@ ChatBot::ChatBot(std::string filename)
     _image = new wxBitmap(filename, wxBITMAP_TYPE_PNG);
 }
 
+// 1. Destructor allready exists
 ChatBot::~ChatBot()
 {
     std::cout << "ChatBot Destructor" << std::endl;
@@ -45,6 +46,88 @@ ChatBot::~ChatBot()
 //// STUDENT CODE
 ////
 // TODO: 
+// Part 2: implement Rule of 5: -> (1. Destructor, 2. Copy Constructor, 3 Copy Asignment Operator, 4. Move Constructor, 5. Move Asignment Operator )
+// 2. Copy Constructor
+ChatBot::ChatBot(const ChatBot &source){
+
+    std::cout << "Chatbot copy constructor is called" << std::endl;
+
+    // copy class data
+    //data handles (owned)
+    _image  =new wxBitmap();
+    *_image = *source._image;
+
+    // data handles (not owned)
+    _currentNode = source._currentNode;
+    _rootNode    = source._rootNode;
+    _chatLogic   = source._chatLogic;
+}
+
+// 3. Copy Asignment Operator
+ChatBot &ChatBot::operator=(const ChatBot &source) // 3 : copy assignment operator
+{
+    std::cout << "copy assignment operator: ASSIGNING content of instance " << &source << " to instance " << this << std::endl;
+
+    if (this == &source){
+        return *this;
+    }
+
+    delete _image;
+    _image = new wxBitmap();
+    *_image = *source._image;
+
+    _currentNode = source._currentNode;
+    _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
+
+    return *this;
+}
+
+// 4. Move constructor
+ChatBot::ChatBot(ChatBot &&source){
+    std::cout << "move constructor: MOVING (c’tor) instance " << &source << " to instance " << this << std::endl;
+
+    _image = source._image;
+    source._image = NULL;
+
+    _currentNode = source._currentNode;
+    source._currentNode = nullptr;
+
+    _rootNode = source._rootNode;
+    source._rootNode = nullptr;
+
+    _chatLogic = source._chatLogic;
+    source._chatLogic = nullptr;
+
+    _chatLogic->SetChatbotHandle(this);
+
+}
+
+// 5. Move asignment operator
+ChatBot &ChatBot::operator=(ChatBot &&source){
+
+std::cout << "move asignment operator: MOVING (assign) instance " << &source << " to instance " << this << std::endl;
+        if (this == &source){
+            return *this;
+        }
+        delete _image;
+
+        _image       = source._image;
+        _currentNode = source._currentNode;
+        _rootNode    = source._rootNode;
+        _chatLogic   = source._chatLogic;
+        _chatLogic->SetChatbotHandle(this);
+
+        source._image       = NULL;
+        source._currentNode = nullptr; 
+        source._rootNode    = nullptr; 
+        source._chatLogic   = nullptr; 
+        
+
+        return *this;
+
+}
 ////
 //// EOF STUDENT CODE
 
