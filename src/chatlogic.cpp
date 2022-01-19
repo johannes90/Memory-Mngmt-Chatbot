@@ -244,9 +244,24 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
     }
 
     // add chatbot to graph root node
-    _chatBot->SetRootNode(rootNode);
-    rootNode->MoveChatbotHere(_chatBot);
+    // Part 5: use local instance below
+    //_chatBot->SetRootNode(rootNode);
+    //rootNode->MoveChatbotHere(_chatBot);
     
+
+    // Part 5: In file chatlogic.cpp, create a local ChatBot instance on the stack at the bottom of function LoadAnswerGraphFromFile. 
+    // Then, use move semantics to pass the ChatBot instance into the root node. 
+    // Make sure that ChatLogic has no ownership relation to the ChatBot instance and thus is no longer responsible for memory allocation and deallocation. 
+    // Note that the member _chatBot remains so it can be used as a communication handle between GUI and ChatBot instance. Make all required changes in files
+    // chatlogic.h / chatlogic.cpp and graphnode.h / graphnode.cpp. 
+    
+    // local instance of chatbot
+    ChatBot chatBot("../images/chatbot.png");
+    chatBot.SetChatLogicHandle(this);
+    chatBot.SetRootNode(rootNode);
+    rootNode->MoveChatbotHere(std::move(chatBot));
+    // 
+
     ////
     //// EOF STUDENT CODE
 }
