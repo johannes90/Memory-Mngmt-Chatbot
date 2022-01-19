@@ -45,10 +45,14 @@ ChatLogic::~ChatLogic()
     */
 
     // delete all edges
+    // Part 3: we do not have to delete the edges anymore -> an edge is a smart pointer now (see approx line 180)
+    // edges in total are not needed anymore at all -> deleted in header as well
+    /*
     for (auto it = std::begin(_edges); it != std::end(_edges); ++it)
     {
         delete *it;
     }
+    */
 
     ////
     //// EOF STUDENT CODE
@@ -170,7 +174,7 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                             auto childNode = std::find_if(_nodes.begin(), _nodes.end(), [&childToken](std::unique_ptr<GraphNode> &node) { return node->GetID() == std::stoi(childToken->second); });
 
                             // create new edge
-                            // Part 3: adapt the edge to smart pointers
+                            // Part 3: adapt the edge to smart pointers because childNode, parentNode are smart pointers 
                             //original: GraphEdge *edge = new GraphEdge(id);
                             
                             std::unique_ptr<GraphEdge> edge = std::make_unique<GraphEdge>(id);
@@ -191,7 +195,9 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                             //(*childNode)->AddEdgeToParentNode(edge);
                             //(*parentNode)->AddEdgeToChildNode(edge);
                             (*childNode)->AddEdgeToParentNode(edge.get());
-                            (*parentNode)->AddEdgeToChildNode(edge.get());
+                            // part 3: (*parentNode)->AddEdgeToChildNode(edge.get());
+                            //part 4: use move to transfer ownership
+                            ((*parentNode).get())->AddEdgeToChildNode(std::move(edge));
                         }
 
                         ////

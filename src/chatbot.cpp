@@ -45,7 +45,6 @@ ChatBot::~ChatBot()
 
 //// STUDENT CODE
 ////
-// TODO: 
 // Part 2: implement Rule of 5: -> (1. Destructor, 2. Copy Constructor, 3 Copy Asignment Operator, 4. Move Constructor, 5. Move Asignment Operator )
 // 2. Copy Constructor
 ChatBot::ChatBot(const ChatBot &source){

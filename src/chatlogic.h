@@ -27,7 +27,9 @@ private:
     std::vector<std::unique_ptr<GraphNode>> _nodes;
     // std::vector<GraphNode *> _nodes;
     
-    std::vector<GraphEdge *> _edges;
+    // Part 3 : edges are not needed anymore because they were just aggregated to be deleted in the destructor
+    // because edge is a smart pointer, it is deleted automatically
+    //std::vector<GraphEdge *> _edges;
 
     ////
     //// EOF STUDENT CODE
