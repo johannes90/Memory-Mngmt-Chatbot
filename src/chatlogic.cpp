@@ -18,10 +18,10 @@ ChatLogic::ChatLogic()
     ////
 
     // create instance of chatbot
-    _chatBot = new ChatBot("../images/chatbot.png");
+    // _chatBot = new ChatBot("../images/chatbot.png");  // Part 5: remove that because the chatbot is created twice otherwise..
 
     // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
-    _chatBot->SetChatLogicHandle(this);
+    // _chatBot->SetChatLogicHandle(this); // Part 5: remove that because the chatbot is created twice otherwise..
 
     ////
     //// EOF STUDENT CODE
@@ -33,7 +33,7 @@ ChatLogic::~ChatLogic()
     ////
 
     // delete chatbot instance
-    delete _chatBot;
+    // delete _chatBot; // Part 5: not needed anymore
 
     // Task 3: The vector nodes is a unique smart pointer, therefore we do not have to delete the data
     // that is done automatically once the pointer object goes out of scope 

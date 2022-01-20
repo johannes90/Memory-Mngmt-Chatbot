@@ -31,16 +31,16 @@ public:
     ////
     // Task 2: declare the overloaded functions -> define in *.cpp
     // 2. Copy constructor 
-    ChatBot::ChatBot(const ChatBot &source);
+    ChatBot(const ChatBot &source);
 
     // 3. Copy Asignment Operator
-    ChatBot &ChatBot::operator=(const ChatBot &source);
+    ChatBot &operator=(const ChatBot &source);
 
     // 4. Move Constructor
-    ChatBot::ChatBot(ChatBot &&source);
+    ChatBot(ChatBot &&source);
 
     // 5. Move Asignment Operator 
-    ChatBot &ChatBot::operator=(ChatBot &&source);
+    ChatBot &operator=(ChatBot &&source);
     
     // 
     ////
